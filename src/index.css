@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +92,68 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-custom-darkGray font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .nav-link {
+    @apply relative text-custom-darkGray text-sm md:text-base font-medium transition-all duration-300 ease-in-out;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-[-4px] h-[2px] w-0 bg-custom-darkGray transition-all duration-300 ease-in-out;
+  }
+
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .social-link {
+    @apply text-custom-darkGray hover:text-custom-gray transition-colors duration-300 ease-in-out;
+  }
+
+  .project-card {
+    @apply rounded-lg overflow-hidden relative bg-white shadow-sm h-[400px] transition-all duration-500 ease-out;
+  }
+
+  .project-card:hover {
+    @apply shadow-md transform scale-[1.01];
+  }
+
+  .project-img {
+    @apply w-full h-full object-cover transition-all duration-500 ease-out;
+  }
+
+  .project-card:hover .project-img {
+    @apply scale-[1.03];
+  }
+
+  .project-overlay {
+    @apply absolute inset-0 bg-black bg-opacity-0 flex items-end p-6 transition-all duration-500 ease-out;
+  }
+
+  .project-card:hover .project-overlay {
+    @apply bg-opacity-10;
+  }
+
+  .project-title {
+    @apply text-white font-medium text-lg opacity-0 transform translate-y-4 transition-all duration-500 ease-out;
+  }
+
+  .project-card:hover .project-title {
+    @apply opacity-100 transform translate-y-0;
+  }
+
+  .main-section {
+    @apply min-h-screen flex flex-col md:flex-row items-center justify-center;
+  }
+
+  .description-section {
+    @apply w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center items-start space-y-6;
+  }
+
+  .carousel-section {
+    @apply w-full md:w-1/2 h-screen overflow-hidden flex flex-col space-y-6 p-6;
   }
 }
