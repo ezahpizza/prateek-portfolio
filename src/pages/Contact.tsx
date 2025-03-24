@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
 import { Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
@@ -106,15 +106,15 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-custom-steelGray flex flex-col relative contact-scroll-style">
-
+        <div className="min-h-screen md:h-screen bg-custom-steelGray flex flex-col md:overflow-hidden relative">
         <Navbar 
             className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
         />
 
-        <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 md:py-4">
-            <div className="w-full max-w-3xl">
-            <div className="mb-8 border-l border-custom-purplePop pt-10 pl-4">
+        <main className="flex-grow flex flex-col md:flex-row md:h-full md:overflow-hidden z-10">
+            {/* LEFT SECTION - Contact Description */}
+            <div className="w-full md:w-2/5 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-[80px]">
+            <div className="space-y-4 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-purplePop max-w-3xl">
                 <h1 
                 className={`text-4xl md:text-5xl text-custom-lightGray transform transition-all duration-500 ease-out ${
                     headingVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
@@ -123,33 +123,36 @@ const Contact = () => {
                 Let's Connect
                 </h1>
                 <p 
-                className={`text-xl md:text-2xl text-custom-gray mt-4 transform transition-all duration-500 ease-out ${
+                className={`text-xl md:text-2xl text-custom-gray transform transition-all duration-500 ease-out ${
                     paragraphVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
                 }`}
                 >
                 Feel free to reach out for collaborations or just to say hi.
                 </p>
             </div>
+            </div>
 
+            {/* RIGHT SECTION - Contact Form */}
             <div 
-                className={`w-[90%] mx-auto bg-custom-gray border border-custom-purplePop p-6 md:p-8 shadow-lg transform transition-all duration-500 ease-out ${
-                    formVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-                }`}
-                >
+            className={`w-full md:w-3/5 h-auto md:h-full flex items-center justify-center transform transition-all duration-500 ease-out md:mb-0 ${
+                formVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+            }`}
+            >
+            <div className="w-full max-w-2xl px-4 md:px-8">
                 {error && (
-                <div className="mb-6 p-3 bg-red-900/30 text-red-300 rounded-lg text-sm">
+                <div className="mb-4 p-3 bg-red-900/30 text-red-300 rounded-lg text-sm">
                     {error}
                 </div>
                 )}
 
                 {isSuccess && (
-                <div className="mb-6 p-3 bg-green-900/30 text-green-300 rounded-lg text-sm flex items-center gap-2">
+                <div className="mb-4 p-3 bg-green-900/30 text-green-300 rounded-lg text-sm flex items-center gap-2">
                     <CheckCircle size={20} />
                     Message sent successfully!
                 </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="relative">
                     <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-custom-gray" size={18} />
@@ -238,7 +241,7 @@ const Contact = () => {
                     placeholder="Your message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={5}
+                    rows={4}
                     className="w-full px-4 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none resize-none"
                     required
                     disabled={isLoading}
@@ -259,17 +262,15 @@ const Contact = () => {
                     )}
                 </button>
                 </form>
-
             </div>
             </div>
         </main>
 
         <Footer 
-        className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : 'translate-y-full'}`} 
+            className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : 'translate-y-full'}`} 
         />
-        
         </div>
     );
-    };
+};
 
 export default Contact;
