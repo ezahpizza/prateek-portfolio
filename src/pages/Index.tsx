@@ -72,7 +72,7 @@ const Index: React.FC = () => {
             >
               i also paint on the side which you can check out,&nbsp;
               <a
-                href="https://www.behance.net/prateekmohapat"
+                href="https://prateeks-art-gallery.webflow.io"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline text-white hover:text-custom-mediumGray transition"
