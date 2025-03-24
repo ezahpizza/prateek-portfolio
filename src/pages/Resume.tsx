@@ -1,175 +1,191 @@
-
-import React, { useEffect } from 'react';
-import Layout from '../components/Layout';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import { 
+  experiences, 
+  educations, 
+  skillCategories, 
+  contactInfo,
+  Experience,
+  Education,
+  Skill
+} from '../data/resumeData';
 
 const Resume: React.FC = () => {
+  const [navFooterVisible, setNavFooterVisible] = useState(false);
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
-  }, []);
+  
+    // Only animate navbar and footer
+    setTimeout(() => setNavFooterVisible(true), 100);
+  }, []); 
+
+  // Reusable component for rendering a skill category with specific color
+  const SkillCategory = ({ 
+    title, 
+    skills, 
+    barColor 
+  }: { 
+    title: string, 
+    skills: Skill[],
+    barColor: string 
+  }) => (
+    <div>
+      <h3 className="text-lg font-medium text-custom-lightGray mb-4">{title}</h3>
+      <ul className="space-y-4">
+        {skills.map((skill) => (
+          <li key={skill.name} className="flex items-center">
+            <span className="w-32 text-custom-lightGray">{skill.name}</span>
+            <div className="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+              <div 
+                className={`${barColor} h-full rounded-full`}
+                style={{ width: `${skill.proficiency}%` }}
+              ></div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  // Reusable component for rendering an experience item
+  const ExperienceItem = ({ 
+    experience
+  }: { 
+    experience: Experience
+  }) => (
+    <div className="group">
+      <div className="flex flex-col md:flex-row justify-between mb-2">
+        <h3 className="text-xl font-medium text-custom-purplePop group-hover:text-custom-hotRed transition-colors duration-300">
+          {experience.title}
+        </h3>
+        <span className="text-sm text-custom-mediumGray">{experience.period}</span>
+      </div>
+      <h4 className="text-md font-medium text-custom-lightGray mb-2">{experience.company}</h4>
+
+      <div className="space-y-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-hotRed max-w-3xl">
+        {experience.responsibilities.map((responsibility, index) => (
+          <p key={index} className="text-custom-lightGray leading-relaxed">
+            {responsibility}
+          </p>
+        ))}
+      </div>  
+    </div>
+  );
+
+  // Reusable component for rendering an education item
+  const EducationItem = ({ 
+    education 
+  }: { 
+    education: Education
+  }) => (
+    <div className="group">
+      <div className="flex flex-col md:flex-row justify-between mb-2">
+        <h3 className="text-xl font-medium text-custom-purplePop group-hover:text-custom-hotRed transition-colors duration-300">
+          {education.degree}
+        </h3>
+        <span className="text-sm text-custom-mediumGray">{education.period}</span>
+      </div>
+      <h4 className="text-md font-medium text-custom-lightGray mb-2">
+        {education.institution}
+      </h4>
+
+      <div className="space-y-2 md:border-b md:pt-2 md:border-r md:pl-4 border-custom-hotRed max-w-3xl">
+        {education.details.map((detail, index) => (
+          <p key={index} className="text-custom-lightGray leading-relaxed">
+            {detail}
+          </p>
+        ))}
+      </div>  
+    </div>
+  );
 
   return (
-    <Layout>
-      <div className="container mx-auto px-6 py-12 animate-fade-in">
+    <div className="flex flex-col min-h-screen bg-custom-steelGray">
+      <Navbar 
+        className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
+      />
+      <div className="container mx-auto px-6 pt-24 pb-12 animate-fade-in">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold text-custom-darkGray mb-12 pb-4 border-b border-gray-200">Résumé</h1>
+          <h1 className="text-4xl font-bold text-custom-lightGray mb-12 pb-4 border-b border-custom-purplePop">Résumé</h1>
           
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-custom-darkGray mb-6">Experience</h2>
+            <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Experience</h2>
             
             <div className="space-y-8">
-              <div className="group">
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <h3 className="text-xl font-medium text-custom-darkGray group-hover:text-custom-gray transition-colors duration-300">Senior UX Designer</h3>
-                  <span className="text-sm text-custom-mediumGray">2020 - Present</span>
-                </div>
-                <h4 className="text-md font-medium text-custom-mediumGray mb-2">Creative Agency Inc.</h4>
-                <p className="text-custom-mediumGray leading-relaxed">
-                  Led user experience design for enterprise clients across fintech, healthcare, and e-commerce sectors. Collaborated with cross-functional teams to deliver award-winning digital products.
-                </p>
-              </div>
-              
-              <div className="group">
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <h3 className="text-xl font-medium text-custom-darkGray group-hover:text-custom-gray transition-colors duration-300">UI/UX Designer</h3>
-                  <span className="text-sm text-custom-mediumGray">2018 - 2020</span>
-                </div>
-                <h4 className="text-md font-medium text-custom-mediumGray mb-2">Digital Studios Ltd.</h4>
-                <p className="text-custom-mediumGray leading-relaxed">
-                  Designed user interfaces for mobile applications and responsive websites. Created wireframes, prototypes, and user flows while ensuring consistent brand identities.
-                </p>
-              </div>
-              
-              <div className="group">
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <h3 className="text-xl font-medium text-custom-darkGray group-hover:text-custom-gray transition-colors duration-300">Junior Web Developer</h3>
-                  <span className="text-sm text-custom-mediumGray">2016 - 2018</span>
-                </div>
-                <h4 className="text-md font-medium text-custom-mediumGray mb-2">Tech Innovations</h4>
-                <p className="text-custom-mediumGray leading-relaxed">
-                  Developed and maintained client websites using HTML, CSS, and JavaScript. Collaborated with designers to implement responsive and accessible web solutions.
-                </p>
-              </div>
+              {experiences.map((experience, index) => (
+                <ExperienceItem 
+                  key={index} 
+                  experience={experience}
+                />
+              ))}
             </div>
           </section>
           
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-custom-darkGray mb-6">Education</h2>
-            
+            <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Education</h2>
             <div className="space-y-8">
-              <div className="group">
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <h3 className="text-xl font-medium text-custom-darkGray group-hover:text-custom-gray transition-colors duration-300">Master of Interaction Design</h3>
-                  <span className="text-sm text-custom-mediumGray">2014 - 2016</span>
-                </div>
-                <h4 className="text-md font-medium text-custom-mediumGray mb-2">Design Institute</h4>
-                <p className="text-custom-mediumGray leading-relaxed">
-                  Specialized in user research, information architecture, and interactive prototyping. Graduated with honors and received the Excellence in Design Innovation award.
-                </p>
-              </div>
-              
-              <div className="group">
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <h3 className="text-xl font-medium text-custom-darkGray group-hover:text-custom-gray transition-colors duration-300">Bachelor of Computer Science</h3>
-                  <span className="text-sm text-custom-mediumGray">2010 - 2014</span>
-                </div>
-                <h4 className="text-md font-medium text-custom-mediumGray mb-2">University of Technology</h4>
-                <p className="text-custom-mediumGray leading-relaxed">
-                  Foundation in programming, algorithms, and software development. Minor in Graphic Design with focus on digital media.
-                </p>
-              </div>
+              {educations.map((education, index) => (
+                <EducationItem key={index} education={education} />
+              ))}
             </div>
           </section>
           
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-custom-darkGray mb-6">Skills</h2>
+            <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Skills</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-lg font-medium text-custom-darkGray mb-4">Design</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">UI/UX Design</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-gray h-full rounded-full" style={{ width: '95%' }}></div>
-                    </div>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">Figma</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-gray h-full rounded-full" style={{ width: '90%' }}></div>
-                    </div>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">Photoshop</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-gray h-full rounded-full" style={{ width: '85%' }}></div>
-                    </div>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">Illustrator</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-gray h-full rounded-full" style={{ width: '80%' }}></div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-medium text-custom-darkGray mb-4">Development</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">HTML/CSS</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-steelGray h-full rounded-full" style={{ width: '95%' }}></div>
-                    </div>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">JavaScript</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-steelGray h-full rounded-full" style={{ width: '85%' }}></div>
-                    </div>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">React</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-steelGray h-full rounded-full" style={{ width: '80%' }}></div>
-                    </div>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-32 text-custom-mediumGray">Node.js</span>
-                    <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                      <div className="bg-custom-steelGray h-full rounded-full" style={{ width: '70%' }}></div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-hotRed">
+              <SkillCategory title="Design" skills={skillCategories.design} barColor="bg-custom-purplePop" />
+              <SkillCategory title="Development" skills={skillCategories.development} barColor="bg-custom-hotRed" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 md:border-b md:pb-4 md:border-r md:pl-4 border-custom-hotRed">
+              <SkillCategory title="AI / ML" skills={skillCategories.aiMl} barColor="bg-custom-purplePop" />
+              <SkillCategory title="DevOps" skills={skillCategories.devOps} barColor="bg-custom-hotRed" />
             </div>
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-custom-darkGray mb-6">Contact</h2>
+            <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Contact</h2>
             
-            <p className="text-custom-mediumGray leading-relaxed mb-6">
+            <p className="text-custom-purplePop leading-relaxed mb-6">
               Interested in working together? Feel free to reach out through any of the channels below.
             </p>
             
             <div className="space-y-2">
-              <p className="text-custom-darkGray">
-                <span className="font-medium">Email:</span> contact@portfolio.com
+              <p className="text-custom-lightGray">
+                <span className="font-medium">Email:</span> {contactInfo.email}
               </p>
-              <p className="text-custom-darkGray">
-                <span className="font-medium">Location:</span> New York, NY
+              <p className="text-custom-lightGray">
+                <span className="font-medium">Location:</span> {contactInfo.location}
               </p>
             </div>
             
-            <button className="mt-8 px-8 py-3 bg-custom-steelGray text-white rounded transition-all duration-300 hover:bg-opacity-90 transform hover:-translate-y-1">
-              Download Full CV
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+              <a 
+                href="https://drive.google.com/file/d/1QWjXvZthQZjqy0RZX6S21zFCBdKPa1_-/view?usp=sharing" 
+                download="Prateek-Mohapatra-Resume.pdf"
+                className="inline-block mt-8 px-8 py-3 bg-custom-purplePop text-white rounded transition-all duration-300 hover:bg-custom-hotRed w-52 text-center"
+              >
+                Download Full CV
+              </a>
+              <a 
+                href="/contact"
+                className="inline-block mt-8 px-8 py-3 bg-custom-purplePop text-white rounded transition-all duration-300 hover:bg-custom-hotRed w-52 text-center"
+              >
+                Contact Me
+              </a>
+            </div>
+
           </section>
         </div>
       </div>
-    </Layout>
+      <Footer 
+        className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : 'translate-y-full'}`} 
+      />
+    </div>
   );
 };
 

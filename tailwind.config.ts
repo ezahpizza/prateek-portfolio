@@ -19,6 +19,7 @@ export default {
 			}
 		},
 		extend: {
+			scrollBehavior: ['responsive'],
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -64,11 +65,13 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				custom: {
-					gray: '#982DAB',
+					gray: '#928DAB',
+					purplePop: '#462F9F',
 					steelGray: '#1F1C2C',
 					lightGray: '#f5f5f5',
 					darkGray: '#333333',
 					mediumGray: '#666666',
+					hotRed: '#ff0066',
 				}
 			},
 			fontFamily: {
