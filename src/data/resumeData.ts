@@ -12,7 +12,7 @@
         period: string;
         details: string[];
     }
-    
+
     export interface Skill {
         name: string;
         proficiency: number;
@@ -92,7 +92,8 @@
         { name: "FastAPI", proficiency: 85 },
         { name: "Flask", proficiency: 85 },
         { name: "MongoDB", proficiency: 85 },
-        { name: "Postgres/MySQL", proficiency: 95 },
+        { name: "MySQL", proficiency: 95 },
+        { name: "Postgres", proficiency: 95 },
         { name: "AstraDB", proficiency: 80 },
         { name: "ChromaDB", proficiency: 80 },
         ],

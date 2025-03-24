@@ -48,9 +48,9 @@ const Resume: React.FC = () => {
       <h3 className="text-lg font-medium text-custom-lightGray mb-4">{title}</h3>
       <ul className="space-y-4">
         {skills.map((skill) => (
-          <li key={skill.name} className="flex items-center">
+          <li key={skill.name} className="flex items-center space-x-6">
             <span className="w-32 text-custom-lightGray">{skill.name}</span>
-            <div className="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+            <div className="flex-1 bg-gray-700 h-2 rounded-full overflow-hidden">
               <div 
                 className={`${barColor} h-full rounded-full`}
                 style={{ width: `${skill.proficiency}%` }}
@@ -60,7 +60,7 @@ const Resume: React.FC = () => {
         ))}
       </ul>
     </div>
-  );
+  )
 
   // Reusable component for rendering an experience item
   const ExperienceItem = ({ 
@@ -93,24 +93,24 @@ const Resume: React.FC = () => {
   }: { 
     education: Education
   }) => (
-    <div className="group">
-      <div className="flex flex-col md:flex-row justify-between mb-2">
-        <h3 className="text-xl font-medium text-custom-purplePop group-hover:text-custom-hotRed transition-colors duration-300">
-          {education.degree}
-        </h3>
-        <span className="text-sm text-custom-mediumGray">{education.period}</span>
-      </div>
-      <h4 className="text-md font-medium text-custom-lightGray mb-2">
-        {education.institution}
-      </h4>
+    <div className="group md:border-b md:pb-2 md:border-r md:pr-4 border-custom-hotRed">
+        <div className="flex flex-col md:flex-row justify-between mb-2 ">
+          <h3 className="text-xl font-medium text-custom-purplePop group-hover:text-custom-hotRed transition-colors duration-300">
+            {education.degree}
+          </h3>
+          <span className="text-sm text-custom-mediumGray">{education.period}</span>
+        </div>
+        <h4 className="text-md font-medium text-custom-lightGray mb-2">
+          {education.institution}
+        </h4>
 
-      <div className="space-y-2 md:border-b md:pt-2 md:border-r md:pl-4 border-custom-hotRed max-w-3xl">
-        {education.details.map((detail, index) => (
-          <p key={index} className="text-custom-lightGray leading-relaxed">
-            {detail}
-          </p>
-        ))}
-      </div>  
+        <div className="space-y-2 max-w-3xl">
+          {education.details.map((detail, index) => (
+            <p key={index} className="text-custom-lightGray leading-relaxed">
+              {detail}
+            </p>
+          ))}
+        </div>  
     </div>
   );
 
@@ -120,7 +120,7 @@ const Resume: React.FC = () => {
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
       />
       <div className="container mx-auto px-6 pt-24 pb-12 animate-fade-in">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold text-custom-lightGray mb-12 pb-4 border-b border-custom-purplePop">Résumé</h1>
           
           <section className="mb-12">
@@ -153,7 +153,7 @@ const Resume: React.FC = () => {
               <SkillCategory title="Development" skills={skillCategories.development} barColor="bg-custom-hotRed" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 md:border-b md:pb-4 md:border-r md:pl-4 border-custom-hotRed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 md:border-b md:pb-4 md:border-r md:pr-4 border-custom-hotRed">
               <SkillCategory title="AI / ML" skills={skillCategories.aiMl} barColor="bg-custom-purplePop" />
               <SkillCategory title="DevOps" skills={skillCategories.devOps} barColor="bg-custom-hotRed" />
             </div>
