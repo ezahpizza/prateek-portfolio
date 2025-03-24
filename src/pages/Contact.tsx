@@ -106,14 +106,14 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen md:h-screen bg-custom-steelGray flex flex-col md:overflow-hidden relative">
+        <div className="min-h-screen md:h-screen bg-custom-steelGray flex flex-col relative">
         <Navbar 
             className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
         />
 
-        <main className="flex-grow flex flex-col md:flex-row md:h-full md:overflow-hidden z-10">
+        <main className="flex-grow flex flex-col md:flex-row z-10">
             {/* LEFT SECTION - Contact Description */}
-            <div className="w-full md:w-2/5 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-[80px]">
+            <div className="w-full md:w-2/5 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-0">
             <div className="space-y-4 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-purplePop max-w-3xl">
                 <h1 
                 className={`text-4xl md:text-5xl text-custom-lightGray transform transition-all duration-500 ease-out ${
@@ -134,7 +134,7 @@ const Contact = () => {
 
             {/* RIGHT SECTION - Contact Form */}
             <div 
-            className={`w-full md:w-3/5 h-auto md:h-full flex items-center justify-center transform transition-all duration-500 ease-out md:mb-0 ${
+            className={`w-full md:w-3/5 flex items-center justify-center transform transition-all duration-500 ease-out ${
                 formVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
             }`}
             >

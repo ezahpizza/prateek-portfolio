@@ -13,8 +13,17 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
   return (
     <header className={`fixed top-0 left-0 right-0 w-full z-50 bg-custom-steelGray/30 backdrop-blur-md border-b border-white/10 ${className}`}>
       <div className="flex justify-between items-center px-4 md:px-6 py-4 max-w-screen-xl mx-auto">
-        <Link to="/" className="text-custom-lightGray font-semibold text-base md:text-lg truncate max-w-[180px] md:max-w-none">
-          PRATEEK MOHAPATRA
+        <Link 
+          to="/" 
+          className="text-custom-lightGray font-semibold"
+        >
+          <span className="hidden md:block text-base lg:text-lg">
+            PRATEEK MOHAPATRA
+          </span>
+          <div className="md:hidden text-center">
+            <div className="text-sm">PRATEEK</div>
+            <div className="text-xs text-custom-gray">MOHAPATRA</div>
+          </div>
         </Link>
 
         <button
@@ -60,7 +69,7 @@ const NavLink: React.FC<NavLinkProps> = ({ to, currentPath, onClick, children })
         to={to}
         onClick={onClick}
         className={`text-custom-lightGray transition-all duration-300 block ${
-          isActive ? 'font-medium' : 'hover:text-white'
+          isActive ? 'font-medium'  : 'hover:text-white'
         }`}
       >
         {children}
