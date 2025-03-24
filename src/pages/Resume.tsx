@@ -160,20 +160,6 @@ const Resume: React.FC = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Contact</h2>
-            
-            <p className="text-custom-purplePop leading-relaxed mb-6">
-              Interested in working together? Feel free to reach out through any of the channels below.
-            </p>
-            
-            <div className="space-y-2">
-              <p className="text-custom-lightGray">
-                <span className="font-medium">Email:</span> {contactInfo.email}
-              </p>
-              <p className="text-custom-lightGray">
-                <span className="font-medium">Location:</span> {contactInfo.location}
-              </p>
-            </div>
             
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <button 
@@ -182,12 +168,7 @@ const Resume: React.FC = () => {
               >
                 Download Full CV
               </button>
-              <button 
-                onClick={handleContactNavigation}
-                className="inline-block mt-8 px-8 py-3 bg-custom-purplePop text-white rounded transition-all duration-300 hover:bg-custom-hotRed w-52 text-center"
-              >
-                Contact Me
-              </button>
+
             </div>
           </section>
         </div>
