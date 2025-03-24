@@ -45,17 +45,6 @@ body {
   color: #888;
 }
 
-/* Hide scrollbars for WebKit browsers */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* For Firefox */
-.scrollbar-hide {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
 .contact-scroll-style::-webkit-scrollbar {
   width: 2px;
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
 import { Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
+import Footer from "../components/Footer";
 
 const Contact = () => {
   // Form data state
@@ -262,6 +263,10 @@ const Contact = () => {
             </div>
             </div>
         </main>
+
+        <Footer 
+        className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : 'translate-y-full'}`} 
+        />
         
         </div>
     );
