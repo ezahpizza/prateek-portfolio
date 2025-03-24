@@ -10,9 +10,11 @@ import {
   Education,
   Skill
 } from '../data/resumeData';
+import { useNavigate } from 'react-router-dom';
 
 const Resume: React.FC = () => {
   const [navFooterVisible, setNavFooterVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Scroll to top when component mounts
@@ -21,6 +23,16 @@ const Resume: React.FC = () => {
     // Only animate navbar and footer
     setTimeout(() => setNavFooterVisible(true), 100);
   }, []); 
+
+  // Function to handle CV download
+  const handleDownloadCV = () => {
+    window.open('https://drive.google.com/file/d/1tTK2brE7-dsCCv_mGPXkR9HbxNrEkyIH/view?usp=sharing', '_blank');
+  };
+
+  // Function to handle Contact navigation
+  const handleContactNavigation = () => {
+    navigate('/contact');
+  };
 
   // Reusable component for rendering a skill category with specific color
   const SkillCategory = ({ 
@@ -164,21 +176,19 @@ const Resume: React.FC = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
-              <a 
-                href="https://drive.google.com/file/d/1tTK2brE7-dsCCv_mGPXkR9HbxNrEkyIH/view?usp=sharing" 
-                download="Prateek-Mohapatra-Resume.pdf"
+              <button 
+                onClick={handleDownloadCV}
                 className="inline-block mt-8 px-8 py-3 bg-custom-purplePop text-white rounded transition-all duration-300 hover:bg-custom-hotRed w-52 text-center"
               >
                 Download Full CV
-              </a>
-              <a 
-                href="/contact"
+              </button>
+              <button 
+                onClick={handleContactNavigation}
                 className="inline-block mt-8 px-8 py-3 bg-custom-purplePop text-white rounded transition-all duration-300 hover:bg-custom-hotRed w-52 text-center"
               >
                 Contact Me
-              </a>
+              </button>
             </div>
-
           </section>
         </div>
       </div>
