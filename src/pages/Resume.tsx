@@ -165,7 +165,7 @@ const Resume: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <a 
-                href="https://drive.google.com/file/d/1QWjXvZthQZjqy0RZX6S21zFCBdKPa1_-/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1tTK2brE7-dsCCv_mGPXkR9HbxNrEkyIH/view?usp=sharing" 
                 download="Prateek-Mohapatra-Resume.pdf"
                 className="inline-block mt-8 px-8 py-3 bg-custom-purplePop text-white rounded transition-all duration-300 hover:bg-custom-hotRed w-52 text-center"
               >
