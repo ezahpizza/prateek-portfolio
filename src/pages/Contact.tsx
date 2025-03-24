@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
 
 const Contact = () => {
@@ -106,7 +105,8 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-custom-steelGray flex flex-col relative">
+        <div className="min-h-screen bg-custom-steelGray flex flex-col relative contact-scroll-style">
+
         <Navbar 
             className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
         />
@@ -131,10 +131,10 @@ const Contact = () => {
             </div>
 
             <div 
-                className={`w-[90%] bg-custom-gray border border-custom-purplePop p-6 md:p-8 shadow-lg transform transition-all duration-500 ease-out ${
-                formVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                className={`w-[90%] mx-auto bg-custom-gray border border-custom-purplePop p-6 md:p-8 shadow-lg transform transition-all duration-500 ease-out ${
+                    formVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
                 }`}
-            >
+                >
                 {error && (
                 <div className="mb-6 p-3 bg-red-900/30 text-red-300 rounded-lg text-sm">
                     {error}

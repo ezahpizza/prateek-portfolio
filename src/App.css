@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -39,4 +43,37 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Hide scrollbars for WebKit browsers */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.contact-scroll-style::-webkit-scrollbar {
+  width: 2px;
+}
+
+.contact-scroll-style::-webkit-scrollbar-track {
+  background: #1F1C2C;
+}
+
+.contact-scroll-style::-webkit-scrollbar-thumb {
+  background: #1F1C2C;
+  border-radius: 1px;
+}
+
+.contact-scroll-style::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+.contact-scroll-style {
+  scrollbar-color: #1F1C2C #1F1C2C;
+  scrollbar-width: thin;
 }

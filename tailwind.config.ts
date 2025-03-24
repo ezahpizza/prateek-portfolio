@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			overflow: {
+				'scroll-y': 'scroll',
+			},
 			scrollBehavior: ['responsive'],
 			colors: {
 				border: 'hsl(var(--border))',
@@ -137,5 +140,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [],
 } satisfies Config;
