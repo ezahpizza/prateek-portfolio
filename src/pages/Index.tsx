@@ -37,7 +37,7 @@ const Index: React.FC = () => {
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
       />
 
-      <main className="flex-grow flex flex-col md:flex-row md:h-full md:overflow-hidden z-10 pt-2">
+      <main className="flex-grow flex flex-col md:flex-row md:h-full md:overflow-hidden z-10 pt-4">
         {/* LEFT SECTION - Content with paragraphs */}
         <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-[80px]">
           <div className="space-y-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-purplePop max-w-3xl">
