@@ -69,14 +69,14 @@ const NavLink: React.FC<NavLinkProps> = ({ to, currentPath, onClick, children })
         to={to}
         onClick={onClick}
         className={`text-custom-lightGray transition-all duration-300 block ${
-          isActive ? 'font-medium'  : 'hover:text-white'
+          isActive ? 'font-medium'  : 'hover:text-custom-gray'
         }`}
       >
         {children}
       </Link>
       <div 
         className={`absolute bottom-0 left-0 right-0 mx-auto w-full max-w-[60px] h-[2px] transition-all duration-300 ${
-          isActive ? 'bg-white' : 'bg-transparent hover:bg-white/50'
+          isActive ? 'bg-white' : 'bg-transparent hover:bg-custom-gray'
         }`} 
       />
     </div>
