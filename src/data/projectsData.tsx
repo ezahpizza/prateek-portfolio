@@ -4,7 +4,7 @@ const projects = [
         title: 'nexaFit',
         description: 'A free web app that helps users plan healthy meals and track calories burned after workouts using smart predictions.',
         image: '/projects/nexafit.webp',
-        link: 'https://nexafit-zeta.vercel.app',
+        link: 'https://nexafit-peach.vercel.app',
         },
         {
         id: 2,
