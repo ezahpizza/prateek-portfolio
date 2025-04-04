@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-2 md:mb-0 text-center md:text-left w-full">
             <p className="text-custom-mediumGray text-sm">
-              © {currentYear} Prateek Mohapatra. All rights reserved.
+              © {currentYear} Prateek Mohapatra.
             </p>
           </div>
 
