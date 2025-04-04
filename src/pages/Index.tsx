@@ -54,8 +54,7 @@ const Index: React.FC = () => {
                 paragraph2Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
               }`}
             >
-              Living in Bhubaneshwar, designing models that <span className="md:hidden"><br /></span> help Samsung systems catch images better.
-            </p>
+              Research Assistant at ITER, SOA. Worked with LadderMedia as a Quality Analyst and PreGrad as a Data Science intern, <span className="md:hidden"><br /></span> with a few freelance jobs as a graphic designer.
             
             <p 
               className={`text-2xl md:text-3xl text-custom-lightGray transform transition-all duration-500 ease-out ${
