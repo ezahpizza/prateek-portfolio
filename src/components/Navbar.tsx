@@ -12,12 +12,12 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 w-full z-50 bg-custom-steelGray/30 backdrop-blur-md border-b border-white/10 ${className}`}>
-      <div className="flex justify-between items-center px-4 md:px-6 py-4 max-w-screen-xl mx-auto">
+      <div className="flex justify-between items-center px-4 md:px-6 py-4 max-w-screen-xl mx-auto w-full">
         <Link 
           to="/" 
-          className="text-custom-lightGray font-semibold"
+          className="text-custom-lightGray font-semibold flex-shrink-0"
         >
-          <span className="hidden md:block text-base lg:text-lg">
+          <span className="hidden md:block text-base lg:text-lg whitespace-nowrap">
             PRATEEK MOHAPATRA
           </span>
           <div className="md:hidden text-center">
@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
         </Link>
 
         <button
-          className="md:hidden text-custom-lightGray z-50"
+          className="md:hidden text-custom-lightGray z-50 flex-shrink-0"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-custom-steelGray/80 backdrop-blur-md px-6 pt-4 pb-6 flex flex-col">
+        <div className="md:hidden bg-custom-steelGray/80 backdrop-blur-md px-6 pt-4 pb-6 flex flex-col w-full">
           <NavLink to="/" currentPath={location.pathname} onClick={() => setMenuOpen(false)}>Home</NavLink>
           <NavLink to="/resume" currentPath={location.pathname} onClick={() => setMenuOpen(false)}>Résumé</NavLink>
           <NavLink to="/contact" currentPath={location.pathname} onClick={() => setMenuOpen(false)}>Contact</NavLink>
@@ -64,7 +64,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ to, currentPath, onClick, children }) => {
   const isActive = currentPath === to;
   return (
-    <div className="inline-block relative w-[100px] text-center">
+    <div className="inline-block relative w-full md:w-[100px] text-center py-2">
       <Link
         to={to}
         onClick={onClick}

@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import VerticalProjectsCarousel from '../components/VerticalProjectsCarousel';
 
 const Index: React.FC = () => {
-  // Animation state for each elementaccountaccaccountaccountaccountaccountaccountaccountount
+  // Animation state for each element
   const [navFooterVisible, setNavFooterVisible] = useState(false);
   const [paragraph1Visible, setParagraph1Visible] = useState(false);
   const [paragraph2Visible, setParagraph2Visible] = useState(false);
@@ -32,17 +32,17 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen md:h-screen bg-custom-steelGray flex flex-col md:overflow-hidden relative">
+    <div className="min-h-screen w-full bg-custom-steelGray flex flex-col relative overflow-x-hidden">
       <Navbar 
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
       />
 
-      <main className="flex-grow flex flex-col md:flex-row md:h-full md:overflow-hidden z-10 pt-6">
+      <main className="flex-grow flex flex-col pt-12 md:flex-row md:h-screen w-full z-10">
         {/* LEFT SECTION - Content with paragraphs */}
         <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-[80px]">
-          <div className="space-y-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-purplePop max-w-3xl">
+          <div className="space-y-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-purplePop max-w-full md:max-w-3xl w-full">
             <p 
-              className={`text-4xl md:text-6xl text-custom-lightGray transform transition-all duration-500 ease-out ${
+              className={`text-3xl sm:text-4xl md:text-6xl text-custom-lightGray transform transition-all duration-500 ease-out leading-tight ${
                 paragraph1Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
               }`}
             >
@@ -50,24 +50,25 @@ const Index: React.FC = () => {
             </p>
             
             <p 
-              className={`text-2xl md:text-3xl text-custom-gray transform transition-all duration-500 ease-out ${
+              className={`text-xl sm:text-2xl md:text-3xl text-custom-gray transform transition-all duration-500 ease-out leading-relaxed ${
                 paragraph2Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
               }`}
             >
               Research Assistant at ITER, SOA. Worked with LadderMedia as a Quality Analyst and PreGrad as a Data Science intern 
             </p>
+            
             <p className={`text-custom-gray transform transition-all duration-500 ease-out ${
                 paragraph4Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
               }`}>
-            with a few freelance jobs as a graphic designer.
+              with a few freelance jobs as a graphic designer.
             </p>
             
             <p 
-              className={`text-2xl md:text-3xl text-custom-lightGray transform transition-all duration-500 ease-out ${
+              className={`text-xl sm:text-2xl md:text-3xl text-custom-lightGray transform transition-all duration-500 ease-out leading-relaxed ${
                 paragraph3Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
               }`}
             >
-              Specialising in just about everything AI / ML and <br />web / software development.
+              Specialising in just about everything AI / ML and <br className="hidden sm:block" />web / software development.
             </p>
             
             <p 

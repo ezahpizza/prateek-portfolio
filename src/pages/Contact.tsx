@@ -106,24 +106,24 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen md:h-screen bg-custom-steelGray flex flex-col relative">
+        <div className="h-screen w-full bg-custom-steelGray flex flex-col relative overflow-hidden">
         <Navbar 
             className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
         />
 
-        <main className="flex-grow flex flex-col md:flex-row z-10">
+        <main className="flex-grow flex flex-col md:flex-row z-10 min-h-0">
             {/* LEFT SECTION - Contact Description */}
-            <div className="w-full md:w-2/5 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-0">
+            <div className="w-full md:w-2/5 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-0 min-h-0">
             <div className="space-y-4 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-purplePop max-w-3xl">
                 <h1 
-                className={`text-4xl md:text-5xl text-custom-lightGray transform transition-all duration-500 ease-out ${
+                className={`text-3xl sm:text-4xl md:text-5xl text-custom-lightGray transform transition-all duration-500 ease-out leading-tight ${
                     headingVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
                 }`}
                 >
                 Let's Connect
                 </h1>
                 <p 
-                className={`text-xl md:text-2xl text-custom-gray transform transition-all duration-500 ease-out ${
+                className={`text-lg sm:text-xl md:text-2xl text-custom-gray transform transition-all duration-500 ease-out leading-relaxed ${
                     paragraphVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
                 }`}
                 >
@@ -134,11 +134,11 @@ const Contact = () => {
 
             {/* RIGHT SECTION - Contact Form */}
             <div 
-            className={`w-full md:w-3/5 flex items-center justify-center transform transition-all duration-500 ease-out ${
+            className={`w-full md:w-3/5 flex items-center justify-center transform transition-all duration-500 ease-out min-h-0 ${
                 formVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
             }`}
             >
-            <div className="w-full max-w-2xl px-4 md:px-8">
+            <div className="w-full max-w-2xl px-4 md:px-8 py-4 md:py-0">
                 {error && (
                 <div className="mb-4 p-3 bg-red-900/30 text-red-300 rounded-lg text-sm">
                     {error}
@@ -152,8 +152,8 @@ const Contact = () => {
                 </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div className="relative">
                     <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-custom-gray" size={18} />
                     <input
@@ -162,7 +162,7 @@ const Contact = () => {
                         placeholder="First name"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none"
+                        className="w-full pl-12 pr-4 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
                         required
                         disabled={isLoading}
                     />
@@ -176,7 +176,7 @@ const Contact = () => {
                         placeholder="Last name"
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none"
+                        className="w-full pl-12 pr-4 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
                         required
                         disabled={isLoading}
                     />
@@ -191,7 +191,7 @@ const Contact = () => {
                     placeholder="Your email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none"
+                    className="w-full pl-12 pr-4 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
                     required
                     disabled={isLoading}
                     />
@@ -199,7 +199,7 @@ const Contact = () => {
 
                 <div className="flex gap-2">
                     <select 
-                    className="px-3 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none"
+                    className="px-3 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
                     disabled={isLoading}
                     >
                     <option value="+91">+91</option>
@@ -229,7 +229,7 @@ const Contact = () => {
                         placeholder="Phone number"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none"
+                        className="w-full pl-12 pr-4 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
                         required
                         disabled={isLoading}
                     />
@@ -241,8 +241,8 @@ const Contact = () => {
                     placeholder="Your message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none resize-none"
+                    rows={3}
+                    className="w-full px-4 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none resize-none text-sm md:text-base"
                     required
                     disabled={isLoading}
                 />
@@ -250,7 +250,7 @@ const Contact = () => {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-custom-hotRed text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative"
+                    className="w-full bg-custom-hotRed text-white py-2.5 md:py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative text-sm md:text-base"
                 >
                     {isLoading ? (
                     <>
