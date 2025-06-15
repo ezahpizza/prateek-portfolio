@@ -26,7 +26,7 @@ const Resume: React.FC = () => {
 
   // Function to handle CV download
   const handleDownloadCV = () => {
-    window.open('https://drive.google.com/file/d/1HY0W6NgOXvOY8u4AxULt71D9BaB_2kah/view', '_blank');
+    window.open('https://drive.google.com/file/d/1ZLiVhiDbC43QQ-TOxZzt9oi6zMjdc9Pb/view?usp=sharing', '_blank');
   };
 
   // Function to handle Contact navigation
