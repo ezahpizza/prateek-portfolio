@@ -5,7 +5,6 @@ import {
   experiences, 
   educations, 
   skillCategories, 
-  contactInfo,
   Experience,
   Education,
   Skill
@@ -26,15 +25,9 @@ const Resume: React.FC = () => {
 
   // Function to handle CV download
   const handleDownloadCV = () => {
-    window.open('https://drive.google.com/file/d/1ZLiVhiDbC43QQ-TOxZzt9oi6zMjdc9Pb/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1f-8FRWW8pYf4_hd0r6lmn5NC5kXdNeCn/view?usp=sharing', '_blank');
   };
 
-  // Function to handle Contact navigation
-  const handleContactNavigation = () => {
-    navigate('/contact');
-  };
-
-  // Reusable component for rendering a skill category with specific color
   const SkillCategory = ({ 
     title, 
     skills, 
@@ -62,7 +55,6 @@ const Resume: React.FC = () => {
     </div>
   )
 
-  // Reusable component for rendering an experience item
   const ExperienceItem = ({ 
     experience
   }: { 
@@ -87,7 +79,6 @@ const Resume: React.FC = () => {
     </div>
   );
 
-  // Reusable component for rendering an education item
   const EducationItem = ({ 
     education 
   }: { 
