@@ -16,14 +16,11 @@ const Resume: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
   
-    // Only animate navbar and footer
     setTimeout(() => setNavFooterVisible(true), 100);
   }, []); 
 
-  // Function to handle CV download
   const handleDownloadCV = () => {
     window.open('https://drive.google.com/file/d/1f-8FRWW8pYf4_hd0r6lmn5NC5kXdNeCn/view?usp=sharing', '_blank');
   };
