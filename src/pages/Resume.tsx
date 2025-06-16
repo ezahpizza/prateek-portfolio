@@ -22,7 +22,7 @@ const Resume: React.FC = () => {
   }, []); 
 
   const handleDownloadCV = () => {
-    window.open('https://drive.google.com/file/d/1f-8FRWW8pYf4_hd0r6lmn5NC5kXdNeCn/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1rYnIUkbVvrP2IA_YTG1jjRsJbS13eZM3/view?usp=sharing', '_blank');
   };
 
   const SkillCategory = ({ 
