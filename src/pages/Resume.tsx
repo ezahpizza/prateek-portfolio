@@ -4,12 +4,12 @@ import Footer from '../components/Footer';
 import { 
   experiences, 
   educations, 
-  skillCategories, 
-  Experience,
-  Education,
-  Skill
+  skillCategories
 } from '../data/resumeData';
 import { useNavigate } from 'react-router-dom';
+import SkillCategory from '../components/resume/SkillCategory';
+import ExperienceItem from '../components/resume/ExperienceItem';
+import EducationItem from '../components/resume/EducationItem';
 
 const Resume: React.FC = () => {
   const [navFooterVisible, setNavFooterVisible] = useState(false);
@@ -22,85 +22,8 @@ const Resume: React.FC = () => {
   }, []); 
 
   const handleDownloadCV = () => {
-    window.open('https://drive.google.com/file/d/1rYnIUkbVvrP2IA_YTG1jjRsJbS13eZM3/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1PtyOe1Ye1EM_mCaSBEsvqceJkygcg_2F/view?usp=sharing', '_blank');
   };
-
-  const SkillCategory = ({ 
-    title, 
-    skills, 
-    barColor 
-  }: { 
-    title: string, 
-    skills: Skill[],
-    barColor: string 
-  }) => (
-    <div>
-      <h3 className="text-lg font-medium text-custom-lightGray mb-4">{title}</h3>
-      <ul className="space-y-4">
-        {skills.map((skill) => (
-          <li key={skill.name} className="flex items-center space-x-6">
-            <span className="w-32 text-custom-lightGray">{skill.name}</span>
-            <div className="flex-1 bg-gray-700 h-2 rounded-full overflow-hidden">
-              <div 
-                className={`${barColor} h-full rounded-full`}
-                style={{ width: `${skill.proficiency}%` }}
-              ></div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-
-  const ExperienceItem = ({ 
-    experience
-  }: { 
-    experience: Experience
-  }) => (
-    <div className="group">
-      <div className="flex flex-col md:flex-row justify-between mb-2">
-        <h3 className="text-xl font-medium text-custom-purplePop group-hover:text-custom-hotRed transition-colors duration-300">
-          {experience.title}
-        </h3>
-        <span className="text-sm text-custom-mediumGray">{experience.period}</span>
-      </div>
-      <h4 className="text-md font-medium text-custom-lightGray mb-2">{experience.company}</h4>
-
-      <div className="space-y-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-hotRed max-w-3xl">
-        {experience.responsibilities.map((responsibility, index) => (
-          <p key={index} className="text-custom-lightGray leading-relaxed">
-            {responsibility}
-          </p>
-        ))}
-      </div>  
-    </div>
-  );
-
-  const EducationItem = ({ 
-    education 
-  }: { 
-    education: Education
-  }) => (
-    <div className="group md:border-b md:pb-2 md:border-r md:pr-4 border-custom-hotRed">
-        <div className="flex flex-col md:flex-row justify-between mb-2 ">
-          <h3 className="text-xl font-medium text-custom-purplePop group-hover:text-custom-hotRed transition-colors duration-300">
-            {education.degree}
-          </h3>
-          <span className="text-sm text-custom-mediumGray">{education.period}</span>
-        </div>
-        <h4 className="text-md font-medium text-custom-lightGray mb-2">
-          {education.institution}
-        </h4>
-
-        <div className="space-y-2 max-w-3xl">
-          {education.details.map((detail, index) => (
-            <p key={index} className="text-custom-lightGray leading-relaxed">
-              {detail}
-            </p>
-          ))}
-        </div>  
-    </div>
-  );
 
   return (
     <div className="flex flex-col min-h-screen bg-custom-steelGray">

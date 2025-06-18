@@ -5,6 +5,13 @@ import { Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
 import Footer from "../components/Footer";
 
 const Contact = () => {
+
+const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
+  if (!WEB3FORMS_API_KEY) {
+    console.error('WEB3FORMS_API_KEY is not defined');
+    return <div>Error: WEB3FORMS_API_KEY is not defined</div>;
+  }
+
   // Form data state
     const [formData, setFormData] = useState({
         firstName: "",
@@ -57,7 +64,7 @@ const Contact = () => {
 
         try {
         const data = {
-            access_key: "c45e9500-a616-45cc-98ae-29f7154009c2",
+            access_key: WEB3FORMS_API_KEY,
             name: `${formData.firstName} ${formData.lastName}`,
             email: formData.email,
             phone: formData.phone,

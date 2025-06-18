@@ -59,6 +59,14 @@
             "Developed and maintained web scraping pipelines to automate data collection from diverse sources, ensuring a steady flow of high-quality data for model training and analytics.",
             "Engineered and optimized machine learning models, fine-tuning hyperparameters and improving feature engineering strategies for increased accuracy and performance."
         ]
+        },
+        {
+        title: "Freelance Developer",
+        company: "Self-Employed",
+        period: "Sep 2020 - Present",
+        responsibilities: [
+            "Engineered a full-stack Learning Management System (LMS) with React and Supabase featuring: role-based access, secure PDF workflows for seamless homework management, and real-time data syncing for a home-based tutorial business.",
+        ]
         }
     ];
     
