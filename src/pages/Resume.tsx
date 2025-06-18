@@ -61,17 +61,22 @@ const Resume: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:border-t md:pt-4 md:border-l md:pl-4 border-custom-hotRed">
               <SkillCategory title="Design" skills={skillCategories.design} barColor="bg-custom-purplePop" />
-              <SkillCategory title="Development" skills={skillCategories.development} barColor="bg-custom-hotRed" />
+              <SkillCategory title="Frontend Development" skills={skillCategories.frontend} barColor="bg-custom-hotRed" />
+
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:pt-4 md:border-l md:pl-4 border-custom-hotRed">
+              <SkillCategory title="Backend Development" skills={skillCategories.backend} barColor="bg-custom-hotRed" />
+              <SkillCategory title="AI / ML" skills={skillCategories.aiMl} barColor="bg-custom-purplePop" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 md:border-b md:pb-4 md:border-r md:pr-4 border-custom-hotRed">
-              <SkillCategory title="AI / ML" skills={skillCategories.aiMl} barColor="bg-custom-purplePop" />
+              <SkillCategory title="Big Data" skills={skillCategories.bigData} barColor="bg-custom-purplePop" />
               <SkillCategory title="DevOps" skills={skillCategories.devOps} barColor="bg-custom-hotRed" />
             </div>
           </section>
           
           <section>
-            
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <button 
                 onClick={handleDownloadCV}

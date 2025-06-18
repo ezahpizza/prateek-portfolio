@@ -93,13 +93,19 @@
         { name: "Ibis Paint X", proficiency: 95 },
         ],
         
-        development: [
+        frontend: [
         { name: "HTML/CSS", proficiency: 95 },
         { name: "JavaScript", proficiency: 85 },
         { name: "React", proficiency: 80 },
-        { name: "FastAPI", proficiency: 85 },
+        { name: "TailwindCSS", proficiency: 85 },
+        { name: "Streamlit", proficiency: 95 },
+        ],
+
+        backend: [
+        { name: "FastAPI", proficiency: 95 },
         { name: "Flask", proficiency: 85 },
-        { name: "MongoDB", proficiency: 85 },
+        { name: "Django", proficiency: 75 },
+        { name: "MongoDB", proficiency: 90 },
         { name: "MySQL", proficiency: 95 },
         { name: "Postgres", proficiency: 95 },
         { name: "AstraDB", proficiency: 80 },
@@ -107,6 +113,7 @@
         ],
         
         aiMl: [
+        { name: "R Programming", proficiency: 85 },
         { name: "Scikit-Learn", proficiency: 95 },
         { name: "Tensorflow", proficiency: 90 },
         { name: "PyTorch", proficiency: 80 },
@@ -114,10 +121,17 @@
         { name: "LangFlow", proficiency: 95 },
         { name: "LangChain", proficiency: 85 },
         ],
+
+        bigData: [
+        { name: "Apache Spark", proficiency: 90 },
+        { name: "Apache Kafka", proficiency: 85 },
+        ],
         
         devOps: [
         { name: "Git & GitHub", proficiency: 90 },
         { name: "Docker", proficiency: 85 },
+        { name: "GitHub Actions", proficiency: 85 },
+        { name: "HuggingFace Spaces", proficiency: 85 },
         ]
     };
     
