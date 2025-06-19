@@ -21,11 +21,16 @@ const TypewriterIntro: React.FC<{ onDone: () => void }> = ({ onDone }) => {
 
   return (
     <motion.div
-      className="font-SWTitle fixed inset-0 flex items-center justify-center z-50"
+      className="font-SWTitle fixed inset-0 flex items-center justify-center z-50 px-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{ color: '#4bd5ee', fontSize: '2.5rem', textAlign: 'center', letterSpacing: 1 }}
+      style={{ 
+        color: '#4bd5ee', 
+        fontSize: 'clamp(1.25rem, 4vw, 2.5rem)', 
+        textAlign: 'center', 
+        letterSpacing: 1 
+      }}
     >
       <span>{displayed}</span>
     </motion.div>

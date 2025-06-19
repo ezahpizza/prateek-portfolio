@@ -51,13 +51,13 @@ const NameCrawl = forwardRef<{ skip: () => void }, NameCrawlProps>(({ name, onDo
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none"
+      className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none px-4"
       initial={{ scale: 6, opacity: 0, y: 0 }}
       animate={controls}
       style={{ 
         fontFamily: 'StarjediHollow',
         color: '#ffe81f',
-        fontSize: '4rem',
+        fontSize: 'clamp(2rem, 8vw, 4rem)',
         fontWeight: 'bold',
         textAlign: 'center',
         letterSpacing: '0.1em',

@@ -67,15 +67,15 @@ const CrawlText = forwardRef<{ skip: () => void }, CrawlTextProps>(({ onDone }, 
 
   return (
    <motion.div
-      className="font-starwarsTitle font-bold fixed left-1/2 bottom-0 pointer-events-none"
+      className="font-starwarsTitle font-bold fixed left-1/2 bottom-0 pointer-events-none px-4"
       initial={{ y: '100%', opacity: 1 }}
       animate={controls}
       style={{
-        width: '20em',
+        width: 'min(20em, 90vw)',
         height: '50em',
-        marginLeft: '-10em',
+        marginLeft: 'min(-10em, -45vw)',
         overflow: 'hidden',
-        fontSize: '350%',
+        fontSize: 'clamp(1.5rem, 5vw, 3.5rem)',
         textAlign: 'justify',
         color: '#ffe81f',
         transform: 'perspective(350px) rotateX(25deg)',
@@ -90,7 +90,9 @@ const CrawlText = forwardRef<{ skip: () => void }, CrawlTextProps>(({ onDone }, 
             key={i} 
             className={`${i < 2 ? 'text-center' : 'text-justify'} mb-6`}
             style={{
-              fontSize: i === 0 ? '1.8rem' : i === 1 ? '2.2rem' : '2rem',
+              fontSize: i === 0 ? 'clamp(1.2rem, 4vw, 1.8rem)' : 
+                       i === 1 ? 'clamp(1.4rem, 4.5vw, 2.2rem)' : 
+                       'clamp(1.3rem, 4vw, 2rem)',
               fontWeight: i < 2 ? 700 : 600,
               textTransform: i === 1 ? 'uppercase' : 'none',
               letterSpacing: i < 2 ? '0.1em' : '0.05em',
