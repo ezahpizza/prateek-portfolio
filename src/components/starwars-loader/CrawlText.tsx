@@ -55,7 +55,7 @@ const CrawlText = forwardRef<{ skip: () => void }, CrawlTextProps>(({ onDone }, 
       await controls.start({
         y: '-300%',
         opacity: 1,
-        transition: { duration: 70, ease: 'linear' },
+        transition: { duration: 90, ease: 'linear' },
       });
       if (!finished) {
         finished = true;
