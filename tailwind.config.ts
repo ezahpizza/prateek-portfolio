@@ -78,7 +78,10 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Unbounded', 'sans-serif']
+				sans: ['Unbounded', 'sans-serif'],
+				starwarsTitle: ['TradeGothic'],
+				SWTitle: ['TradeGothicNML'],
+				starwarsIntro: ['StarjediHollow', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

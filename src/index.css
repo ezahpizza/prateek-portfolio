@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'TradeGothicNML';
+  src: url('/fonts/TradeGothicNormal.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'TradeGothic';
+  src: url('/fonts/TradeGothic.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'StarjediHollow';
+  src: url('/fonts/Starjhol.ttf') format('truetype');
+  font-weight: normal;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

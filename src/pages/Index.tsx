@@ -3,7 +3,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import VerticalProjectsCarousel from '../components/VerticalProjectsCarousel';
 
-const Index: React.FC = () => {
+interface IndexProps {
+  showContent?: boolean;
+}
+
+const Index: React.FC<IndexProps> = ({ showContent = true }) => {
   // Animation state for each element
   const [navFooterVisible, setNavFooterVisible] = useState(false);
   const [paragraph1Visible, setParagraph1Visible] = useState(false);
@@ -12,7 +16,8 @@ const Index: React.FC = () => {
   const [paragraph4Visible, setParagraph4Visible] = useState(false);
   const [carouselVisible, setCarouselVisible] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
+  if (!showContent) return;
     // Sequential animation with timings
     const animationSequence = async () => {
       // Start with navbar and footer
@@ -29,7 +34,7 @@ const Index: React.FC = () => {
     };
 
     animationSequence();
-  }, []);
+  }, [showContent]);
 
   return (
     <div className="min-h-screen w-full bg-custom-steelGray flex flex-col relative overflow-x-hidden">
@@ -68,7 +73,7 @@ const Index: React.FC = () => {
                 paragraph3Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
               }`}
             >
-              Specialising in just about everything AI / ML and <br className="hidden sm:block" />web / software development.
+              Specialising in just about everything  <br className="hidden sm:block" /> AI / ML and web / software development.
             </p>
             
             <p 
