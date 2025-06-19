@@ -81,7 +81,7 @@ export default {
 				sans: ['Unbounded', 'sans-serif'],
 				starwarsTitle: ['TradeGothic'],
 				SWTitle: ['TradeGothicNML'],
-				starwarsIntro: ['StarjediHollow', 'monospace'],
+				starwarsIntro: ['StarjediHollow'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
