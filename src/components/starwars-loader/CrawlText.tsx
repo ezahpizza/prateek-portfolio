@@ -73,7 +73,7 @@ const CrawlText = forwardRef<{ skip: () => void }, CrawlTextProps>(({ onDone }, 
       style={{
         width: 'min(20em, 90vw)',
         height: '50em',
-        marginLeft: 'min(-10em, -45vw)',
+        marginLeft: 'calc(-1 * min(10em, 45vw))',
         overflow: 'hidden',
         fontSize: 'clamp(1.5rem, 5vw, 3.5rem)',
         textAlign: 'justify',
