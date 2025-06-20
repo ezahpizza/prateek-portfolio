@@ -19,7 +19,7 @@ const HyperspaceJumpPrompt: React.FC<{ onJump: () => void }> = ({ onJump }) => {
         }}
       >
         <img
-          src="/r2d2.svg"
+          src="/images/r2d2.svg"
           alt="R2-D2"
           style={{ maxWidth: '100%', maxHeight: '100%' }}
         />
@@ -30,14 +30,14 @@ const HyperspaceJumpPrompt: React.FC<{ onJump: () => void }> = ({ onJump }) => {
         transition={{ duration: 0.2 }}
         style={{ fontSize: 'clamp(0.75rem, 2.5vw, 1.125rem)' }}
       >
-        <div className="text-center md:text-left">
+        <div className="font-SWprompt text-center md:text-left">
           Course set to Prateek's portfolio.<br />
           Hyperspace jump calibrations complete.<br />
           <span className="text-yellow-400">Ready for lightspeed...</span>
         </div>
       </motion.div>
       <motion.button
-        className="px-4 py-3 md:px-8 md:py-4 bg-blue-600 text-white rounded-lg shadow-lg font-bold text-sm md:text-xl border-2 border-blue-300 hover:bg-blue-700 transition-all duration-200"
+        className="font-SWprompt px-4 py-3 md:px-8 md:py-4 bg-blue-600 text-white rounded-lg shadow-lg font-bold text-sm md:text-xl border-2 border-blue-300 hover:bg-blue-700 transition-all duration-200"
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.05 }}
         onClick={onJump}

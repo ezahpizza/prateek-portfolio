@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StarWarsLoader from './components/starwars-loader/StarWarsLoader';
+import StarWarsFanPrompt from './components/StarWarsFanPrompt';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,30 +14,62 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [showPrompt, setShowPrompt] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+
+  const handleYes = () => {
+    setShowPrompt(false);
+    setShowLoader(true);
+  };
+
+  const handleNo = () => {
+    setShowPrompt(false);
+    setShowContent(true);
+  };
+
+  const handleMaybe = () => {
+    setShowPrompt(false);
+    setShowLoader(true);
+  };
+
+  const handleLoaderFinish = () => {
+    setShowLoader(false);
+    setShowContent(true);
+  };
+
   return (
     <>
-      {loading && (
-        <StarWarsLoader onFinish={() => setLoading(false)} name="Prateek" />
+      {showPrompt && (
+        <StarWarsFanPrompt 
+          onYes={handleYes}
+          onNo={handleNo}
+          onMaybe={handleMaybe}
+        />
       )}
-      {!loading && (
+      
+      {showLoader && (
+        <StarWarsLoader onFinish={handleLoaderFinish} name="Prateek" />
+      )}
+      
+      {showContent && (
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <Toaster />
             <Sonner />
             <BrowserRouter>
               <Routes>
-                <Route path="/" element={<Index showContent={!loading} />} />
+                <Route path="/" element={<Index showContent={showContent} />} />
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/contact" element={<Contact />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
       )}
     </>
   );
 };
+
 export default App;

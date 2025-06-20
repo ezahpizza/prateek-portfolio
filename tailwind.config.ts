@@ -78,6 +78,7 @@ export default {
 				}
 			},
 			fontFamily: {
+				SWprompt: ['VT323'],
 				sans: ['Unbounded', 'sans-serif'],
 				starwarsTitle: ['TradeGothic'],
 				SWTitle: ['TradeGothicNML'],
