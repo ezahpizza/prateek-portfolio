@@ -53,10 +53,14 @@ const CrawlText = forwardRef<{ skip: () => void }, CrawlTextProps>(({ onDone }, 
   useEffect(() => {
     async function sequence() {
       await controls.start({
-        y: '-300%',
-        opacity: 1,
-        transition: { duration: 90, ease: 'linear' },
-      });
+          y: '-400%',
+          opacity: 1,
+          transition: { 
+            duration: 100, 
+            ease: [0.25, 0.46, 0.45, 0.94],
+            type: 'tween'
+          },
+        });
       if (!finished) {
         finished = true;
         onDone();
@@ -68,17 +72,17 @@ const CrawlText = forwardRef<{ skip: () => void }, CrawlTextProps>(({ onDone }, 
   return (
    <motion.div
       className="font-starwarsTitle font-bold fixed left-1/2 bottom-0 pointer-events-none px-4"
-      initial={{ y: '100%', opacity: 1 }}
+      initial={{ y: '120%', opacity: 1 }}
       animate={controls}
       style={{
         width: 'min(20em, 90vw)',
-        height: '50em',
+        height: '100vh',
         marginLeft: 'calc(-1 * min(10em, 45vw))',
-        overflow: 'hidden',
+        overflow: 'visible',
         fontSize: 'clamp(1.5rem, 5vw, 3.5rem)',
         textAlign: 'justify',
         color: '#ffe81f',
-        transform: 'perspective(350px) rotateX(25deg)',
+        transform: 'perspective(400px) rotateX(25deg)',
         transformOrigin: '50% 100%',
         lineHeight: '1.4',
         zIndex: 50,
