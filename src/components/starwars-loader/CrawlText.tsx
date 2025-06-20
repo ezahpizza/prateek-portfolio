@@ -16,7 +16,7 @@ const crawlText = [
 
   'Episode IV',
   'A New Deploy',
-  "Learned he has, from many mentors. Deep learning, fuzzy logic, web design—all mastered, he has. Into real world, deploy his powers he did. Samsung, NIT, and freelance—each a battleground. Strong, his CI/CD is. Real-time syncing, cloud scaling—flows like the Force through him. Awaiting, new missions are.",
+  'Learned he has, from many mentors. Deep learning, fuzzy logic, web design—all mastered, he has. Into real world, deploy his powers he did. Samsung, NIT, and freelance—each a battleground. Strong, his CI/CD is. Real-time syncing, cloud scaling—flows like the Force through him. Awaiting, new missions are.',
 
   'Episode V',
   'The Intern Strikes Back',
