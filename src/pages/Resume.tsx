@@ -6,14 +6,15 @@ import {
   educations, 
   skillCategories
 } from '../data/resumeData';
-import { useNavigate } from 'react-router-dom';
 import SkillCategory from '../components/resume/SkillCategory';
 import ExperienceItem from '../components/resume/ExperienceItem';
 import EducationItem from '../components/resume/EducationItem';
+import ClickSpark from '../components/ui/ClickSpark';
+import TextPressure from '../components/ui/TextPressure';
+
 
 const Resume: React.FC = () => {
   const [navFooterVisible, setNavFooterVisible] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,13 +27,31 @@ const Resume: React.FC = () => {
   };
 
   return (
+    <ClickSpark
+              sparkColor='#fff'
+              sparkSize={10}
+              sparkRadius={15}
+              sparkCount={8}
+              duration={400}
+            >
     <div className="flex flex-col min-h-screen bg-custom-steelGray">
       <Navbar 
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
       />
       <div className="container mx-auto px-6 pt-24 pb-12 animate-fade-in">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold text-custom-lightGray mb-12 pb-4 border-b border-custom-purplePop">Résumé</h1>
+         <TextPressure
+          text="Résumé"
+          flex={true}
+          alpha={false}
+          stroke={false}
+          width={true}
+          weight={true}
+          italic={true}
+          textColor="#ffffff"
+          strokeColor="#ff0000"
+          minFontSize={36}
+        />
           
           <section className="mb-12">
             <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Experience</h2>
@@ -92,7 +111,7 @@ const Resume: React.FC = () => {
       <Footer 
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : 'translate-y-full'}`} 
       />
-    </div>
+    </div></ClickSpark>
   );
 };
 

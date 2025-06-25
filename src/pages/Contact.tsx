@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
 import { Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
 import Footer from "../components/Footer";
+import TextPressure from '../components/ui/TextPressure';
 
 const Contact = () => {
 
@@ -127,7 +128,18 @@ const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
                     headingVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
                 }`}
                 >
-                Let's Connect
+                <TextPressure
+                        text="Let's Connect"
+                        flex={true}
+                        alpha={false}
+                        stroke={false}
+                        width={true}
+                        weight={true}
+                        italic={true}
+                        textColor="#ffffff"
+                        strokeColor="#ff0000"
+                        minFontSize={36}
+                        />
                 </h1>
                 <p 
                 className={`text-lg sm:text-xl md:text-2xl text-custom-gray transform transition-all duration-500 ease-out leading-relaxed ${
