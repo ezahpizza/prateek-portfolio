@@ -18,12 +18,16 @@ import projects from '../data/projectsData';
 
 const Resume: React.FC = () => {
   const [navFooterVisible, setNavFooterVisible] = useState(false);
+  const [headVisible, setheadVisible] = useState(false);
+  const [contentVisible, setcontentVisible] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   
     setTimeout(() => setNavFooterVisible(true), 100);
+    setTimeout(() => setheadVisible(true), 800);
+    setTimeout(() => setcontentVisible(true), 1000);
   }, []); 
 
   const handleDownloadCV = () => {
@@ -42,9 +46,11 @@ const Resume: React.FC = () => {
       <Navbar 
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
       />
-      <div className="container mx-auto px-6 pt-24 pb-12 animate-fade-in">
+      <div className={`container mx-auto px-6 pt-24 pb-12 `}>
+
         <div className="max-w-7xl mx-auto">
          <TextPressure
+          className={`transform transition-all duration-500 ease-out leading-tight opacity-0 -translate-x-12 ${headVisible ? 'translate-x-0 opacity-100' : ''}`}
           text="Résumé"
           flex={true}
           alpha={false}
@@ -57,7 +63,7 @@ const Resume: React.FC = () => {
           minFontSize={36}
         />
           
-          <section className="mb-12 overflow-hidden">
+          <section className={`mb-12 overflow-hidden transform transition-all duration-500 ease-out leading-tight opacity-0 -translate-x-12 ${contentVisible ? 'translate-x-0 opacity-100' : ''}`}>
             <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Experience</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

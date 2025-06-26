@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import VerticalProjectsCarousel from '../components/VerticalProjectsCarousel';
 import TextPressure from '../components/ui/TextPressure';
 import ClickSpark from '../components/ui/ClickSpark';
 import ScrollVelocity from '../components/ui/ScrollVelocity';
@@ -21,6 +20,7 @@ const Index: React.FC<IndexProps> = ({ showContent = true }) => {
   const [paragraph3Visible, setParagraph3Visible] = useState(false);
   const [paragraph4Visible, setParagraph4Visible] = useState(false);
   const [carouselVisible, setCarouselVisible] = useState(false);
+  const [scrollVelocityVisible, setscrollVelocityVisible] = useState(false);
 
 useEffect(() => {
   if (!showContent) return;
@@ -37,6 +37,7 @@ useEffect(() => {
       
       // Finally the carousel
       setTimeout(() => setCarouselVisible(true), 1600);
+      setTimeout(() => setscrollVelocityVisible(true), 1900);
     };
 
     animationSequence();
@@ -129,7 +130,7 @@ useEffect(() => {
 
             {/* VERTICAL SCROLL VELOCITY - Between sections on desktop, between top/bottom on mobile */}
             <div className={`min-h-screen hidden mr-8 md:flex w-16 items-center justify-center transform transition-all duration-500 ease-out ${
-              carouselVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+              scrollVelocityVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
             }`}>
               <div className="-rotate-90 origin-center whitespace-nowrap h-full flex items-center justify-center">
                 <ScrollVelocity
@@ -145,7 +146,7 @@ useEffect(() => {
 
             {/* Mobile ScrollVelocity - Horizontal between sections */}
             <div className={`md:hidden w-full py-4 transform transition-all duration-500 ease-out ${
-              carouselVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+              scrollVelocityVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
             }`}>
               <ScrollVelocity
                     numCopies={15}
@@ -157,17 +158,10 @@ useEffect(() => {
                   />
             </div>
 
-            {/* RIGHT SECTION - Carousel
             <div 
               className={`w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-10 ${
                 carouselVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
               }`}
-            >
-              <VerticalProjectsCarousel />
-            </div> */}
-
-            <div 
-              className={'w-full md:w-1/3 h-auto md:h-full'}
             >
                <InfiniteScroll
                     items={projects}
@@ -178,8 +172,6 @@ useEffect(() => {
                     itemMinHeight={300}
                   />
             </div>
-
-            
           </main>
 
           </ClickSpark>

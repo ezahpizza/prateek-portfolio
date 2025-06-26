@@ -120,9 +120,21 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const getTiltTransform = (): string => {
-    if (!isTilted) return "none";
+    if (!isTilted || isMobile) return "none"; // Disable tilt on mobile
     return tiltDirection === "left"
       ? "rotateX(20deg) rotateZ(-20deg) skewX(20deg)"
       : "rotateX(20deg) rotateZ(20deg) skewX(-20deg)";
@@ -138,18 +150,39 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 
     const firstItem = divItems[0];
     const itemStyle = getComputedStyle(firstItem);
-    const itemHeight = firstItem.offsetHeight;
-    const itemMarginTop = parseFloat(itemStyle.marginTop) || 0;
-    const totalItemHeight = itemHeight + itemMarginTop;
-    const totalHeight =
-      itemHeight * items.length + itemMarginTop * (items.length - 1);
+    
+    let totalItemSize: number;
+    let wrapFn: (value: number) => number;
 
-    const wrapFn = gsap.utils.wrap(-totalHeight, totalHeight);
+    if (isMobile) {
+      // Horizontal layout for mobile
+      const itemWidth = firstItem.offsetWidth;
+      const itemMarginLeft = parseFloat(itemStyle.marginLeft) || 0;
+      const totalItemWidth = itemWidth + itemMarginLeft;
+      const totalWidth = itemWidth * items.length + itemMarginLeft * (items.length - 1);
+      
+      totalItemSize = totalItemWidth;
+      wrapFn = gsap.utils.wrap(-totalWidth, totalWidth);
 
-    divItems.forEach((child, i) => {
-      const y = i * totalItemHeight;
-      gsap.set(child, { y });
-    });
+      divItems.forEach((child, i) => {
+        const x = i * totalItemWidth;
+        gsap.set(child, { x, y: 0 });
+      });
+    } else {
+      // Vertical layout for desktop
+      const itemHeight = firstItem.offsetHeight;
+      const itemMarginTop = parseFloat(itemStyle.marginTop) || 0;
+      const totalItemHeight = itemHeight + itemMarginTop;
+      const totalHeight = itemHeight * items.length + itemMarginTop * (items.length - 1);
+      
+      totalItemSize = totalItemHeight;
+      wrapFn = gsap.utils.wrap(-totalHeight, totalHeight);
+
+      divItems.forEach((child, i) => {
+        const y = i * totalItemHeight;
+        gsap.set(child, { y, x: 0 });
+      });
+    }
 
     const observer = Observer.create({
       target: container,
@@ -161,18 +194,32 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       onRelease: ({ target }) => {
         (target as HTMLElement).style.cursor = "grab";
       },
-      onChange: ({ deltaY, isDragging, event }) => {
-        const d = event.type === "wheel" ? -deltaY : deltaY;
+      onChange: ({ deltaX, deltaY, isDragging, event }) => {
+        const d = isMobile 
+          ? (event.type === "wheel" ? -deltaX : deltaX)
+          : (event.type === "wheel" ? -deltaY : deltaY);
         const distance = isDragging ? d * 5 : d * 10;
+        
         divItems.forEach((child) => {
-          gsap.to(child, {
-            duration: 0.5,
-            ease: "expo.out",
-            y: `+=${distance}`,
-            modifiers: {
-              y: gsap.utils.unitize(wrapFn),
-            },
-          });
+          if (isMobile) {
+            gsap.to(child, {
+              duration: 0.5,
+              ease: "expo.out",
+              x: `+=${distance}`,
+              modifiers: {
+                x: gsap.utils.unitize(wrapFn),
+              },
+            });
+          } else {
+            gsap.to(child, {
+              duration: 0.5,
+              ease: "expo.out",
+              y: `+=${distance}`,
+              modifiers: {
+                y: gsap.utils.unitize(wrapFn),
+              },
+            });
+          }
         });
       },
     });
@@ -184,12 +231,21 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 
       const tick = () => {
         divItems.forEach((child) => {
-          gsap.set(child, {
-            y: `+=${speedPerFrame}`,
-            modifiers: {
-              y: gsap.utils.unitize(wrapFn),
-            },
-          });
+          if (isMobile) {
+            gsap.set(child, {
+              x: `+=${speedPerFrame}`,
+              modifiers: {
+                x: gsap.utils.unitize(wrapFn),
+              },
+            });
+          } else {
+            gsap.set(child, {
+              y: `+=${speedPerFrame}`,
+              modifiers: {
+                y: gsap.utils.unitize(wrapFn),
+              },
+            });
+          }
         });
         rafId = requestAnimationFrame(tick);
       };
@@ -232,6 +288,7 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
     isTilted,
     tiltDirection,
     negativeMargin,
+    isMobile,
   ]);
 
   return (
@@ -239,16 +296,22 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       <style>
         {`
           .infinite-scroll-wrapper {
-            max-height: ${maxHeight};
+            max-height: ${isMobile ? 'auto' : maxHeight};
+            height: ${isMobile ? `${itemMinHeight}px` : 'auto'};
           }
 
           .infinite-scroll-container {
-            width: ${width};
+            width: ${isMobile ? 'auto' : width};
+            flex-direction: ${isMobile ? 'row' : 'column'};
+            height: ${isMobile ? '100%' : 'auto'};
           }
 
           .infinite-scroll-item {
             height: ${itemMinHeight}px;
-            margin-top: ${negativeMargin};
+            width: ${isMobile ? `${itemMinHeight * 0.75}px` : 'auto'};
+            margin-top: ${isMobile ? '0' : negativeMargin};
+            margin-left: ${isMobile ? negativeMargin : '0'};
+            flex-shrink: 0;
           }
         `}
       </style>
