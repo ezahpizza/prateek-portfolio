@@ -41,22 +41,21 @@ useEffect(() => {
   }, [showContent]);
 
   return (
-    <>
-
+  <>
     <div className="select-none min-h-screen w-full bg-custom-steelGray flex flex-col relative overflow-x-hidden">
-
-          <Navbar 
-            className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
-          />
-          <ClickSpark
-              sparkColor='#fff'
-              sparkSize={10}
-              sparkRadius={15}
-              sparkCount={8}
-              duration={400}
-            >
-                 
-          <main className="flex-grow flex flex-col md:flex-row md:h-screen w-full z-10 overflow-hidden">
+      
+      <Navbar 
+        className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
+      />
+      
+      <ClickSpark
+        sparkColor='#fff'
+        sparkSize={10}
+        sparkRadius={15}
+        sparkCount={8}
+        duration={400}
+      >
+        <main className="flex-grow flex flex-col md:flex-row md:h-screen w-full z-10 overflow-hidden">
             {/* LEFT SECTION - Content with paragraphs */}
             <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-32 pb-8 md:pt-20 md:pb-[80px] z-50">
               <div className="space-y-6 md:border-t md:mt-12 md:border-l md:pl-4 border-custom-purplePop max-w-full md:max-w-3xl w-full">

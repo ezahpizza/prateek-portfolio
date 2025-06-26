@@ -11,7 +11,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 w-full z-50 bg-custom-steelGray/30 backdrop-blur-md border-b border-white/10 ${className}`}>
+    <header className={`fixed top-0 left-0 right-0 w-full z-[60] bg-custom-steelGray/30 backdrop-blur-md border-b border-white/10 ${className}`}>
       <div className="flex justify-between items-center px-4 md:px-6 py-4 max-w-screen-xl mx-auto w-full">
         <Link 
           to="/" 
@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
         </Link>
 
         <button
-          className="md:hidden text-custom-lightGray z-50 flex-shrink-0"
+          className="md:hidden text-custom-lightGray z-[60] relative flex-shrink-0"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >

@@ -122,32 +122,39 @@ const ClickSpark = ({
   ]);
 
   const handleClick = (e) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  // Don't create sparks if clicking on interactive elements
+  if (e.target.closest('button') || e.target.closest('a') || e.target.closest('nav')) {
+    return;
+  }
+  
+  const canvas = canvasRef.current;
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    const now = performance.now();
-    const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
-      x,
-      y,
-      angle: (2 * Math.PI * i) / sparkCount,
-      startTime: now,
-    }));
+  const now = performance.now();
+  const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
+    x,
+    y,
+    angle: (2 * Math.PI * i) / sparkCount,
+    startTime: now,
+  }));
 
-    sparksRef.current.push(...newSparks);
-  };
+  sparksRef.current.push(...newSparks);
+};
 
-  return (
-    <div className="relative w-full h-full" onClick={handleClick}>
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full block absolute top-0 left-0 select-none pointer-events-none"
-      />
+ return (
+  <div className="relative w-full h-full" onClick={handleClick} style={{ pointerEvents: 'auto' }}>
+    <canvas
+      ref={canvasRef}
+      className="w-full h-full block absolute top-0 left-0 select-none pointer-events-none"
+    />
+    <div style={{ pointerEvents: 'auto' }}>
       {children}
     </div>
-  );
+  </div>
+);
 };
 
 export default ClickSpark;
