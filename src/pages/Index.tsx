@@ -6,6 +6,7 @@ import ClickSpark from '../components/ui/ClickSpark';
 import ScrollVelocity from '../components/ui/ScrollVelocity';
 import InfiniteScroll from '../components/ui/InfiniteScroll';
 import projects from '../data/projectsData';
+import VerticalProjectsCarousel from '../components/VerticalProjectsCarousel';
 
 
 interface IndexProps {
@@ -159,7 +160,7 @@ useEffect(() => {
             </div>
 
             <div 
-              className={`w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-10 ${
+              className={`hidden sm:block w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-10 ${
                 carouselVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
               }`}
             >
@@ -171,6 +172,15 @@ useEffect(() => {
                     pauseOnHover={true}
                     itemMinHeight={300}
                   />
+            </div>
+
+            {/* RIGHT SECTION - Carousel */}
+            <div 
+              className={`block sm:hidden w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-20 ${
+                carouselVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+              }`}
+            >
+              <VerticalProjectsCarousel />
             </div>
           </main>
 
