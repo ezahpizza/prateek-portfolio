@@ -158,14 +158,17 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       // Horizontal layout for mobile
       const itemWidth = firstItem.offsetWidth;
       const itemMarginLeft = parseFloat(itemStyle.marginLeft) || 0;
-      const totalItemWidth = itemWidth + itemMarginLeft;
-      const totalWidth = itemWidth * items.length + itemMarginLeft * (items.length - 1);
+      const itemMarginRight = parseFloat(itemStyle.marginRight) || 0;
+      const totalItemWidth = itemWidth + itemMarginLeft + itemMarginRight;
+      const totalWidth = totalItemWidth * items.length;
       
       totalItemSize = totalItemWidth;
       wrapFn = gsap.utils.wrap(-totalWidth, totalWidth);
 
-      divItems.forEach((child, i) => {
-        const x = i * totalItemWidth;
+      // Create duplicates for seamless infinite scroll
+      const extendedItems = [...divItems, ...divItems, ...divItems];
+      extendedItems.forEach((child, i) => {
+        const x = (i - items.length) * totalItemWidth;
         gsap.set(child, { x, y: 0 });
       });
     } else {
@@ -309,8 +312,8 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
           .infinite-scroll-item {
             height: ${itemMinHeight}px;
             margin-top: ${isMobile ? '0' : negativeMargin};
-            margin-left: ${isMobile ? '1rem' : '0'};
-            margin-right: ${isMobile ? '0.5rem' : '0'};
+            margin-left: ${isMobile ? '-6.2rem' : '0'};
+            margin-right: ${isMobile ? '-6.2rem' : '0'};
             flex-shrink: 0;
           }
         `}
