@@ -82,6 +82,13 @@ body {
   text-orientation: mixed;
 }
 
+canvas {
+  background-color: #1F1C2C; 
+}
+body {
+  background-color: #1F1C2C;
+  color: #E5E7EB; /* Tailwind's gray-200 */
+}
 .card {
   padding: 2em;
 }

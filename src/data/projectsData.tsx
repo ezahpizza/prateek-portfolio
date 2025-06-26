@@ -44,7 +44,7 @@ const projects = [
         },
         {
         id: 7,
-        title: 'BERT Question-Answerer',
+        title: 'BERT Question Answerer',
         description: 'Made machines understand and answer with human-like precision using the power of BERT.',
         image: '/projects/qa.webp',
         link: 'https://ezahpizza-bert-q-a.streamlit.app',

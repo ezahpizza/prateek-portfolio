@@ -12,6 +12,8 @@ import ClickSpark from '../components/ui/ClickSpark';
 import TextPressure from '../components/ui/TextPressure';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import MagnetLines  from '../components/ui/MagnetLines';
+import InfiniteMenu   from '../components/ui/InfiniteMenu';
+import projects from '../data/projectsData'; 
 
 
 const Resume: React.FC = () => {
@@ -157,7 +159,7 @@ const Resume: React.FC = () => {
             </div>
           </section>
           
-          <section>
+          <section className='mb-12'>
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <button 
                 onClick={handleDownloadCV}
@@ -169,7 +171,16 @@ const Resume: React.FC = () => {
             </div>
           </section>
         </div>
+      <section className="overflow-hidden">
+        <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Projects</h2>
+      </section>
+        <section className="overflow-hidden rounded-full">
+          <div className="relative h-600px bg-custom_steelgray">
+                <InfiniteMenu items={projects}/>
+          </div>
+        </section>
       </div>
+
       <Footer 
         className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : 'translate-y-full'}`} 
       />
