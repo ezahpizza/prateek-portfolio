@@ -163,11 +163,13 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       const totalWidth = totalItemWidth * items.length;
       
       totalItemSize = totalItemWidth;
-      wrapFn = gsap.utils.wrap(0, totalWidth);
+      // Create enough buffer to prevent blinking
+      wrapFn = gsap.utils.wrap(-totalWidth * 2, totalWidth * 2);
 
+      // Position items with buffer on both sides
       divItems.forEach((child, i) => {
         const x = i * totalItemWidth;
-        gsap.set(child, { x, y: 0 });
+        gsap.set(child, { x, y: 0, opacity: 1 });
       });
     } else {
       // Vertical layout for desktop
@@ -299,21 +301,25 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
           .infinite-scroll-wrapper {
             max-height: ${isMobile ? 'auto' : maxHeight};
             height: ${isMobile ? `${itemMinHeight}px` : 'auto'};
+            overflow: hidden;
+            width: 100%;
           }
 
           .infinite-scroll-container {
             width: ${isMobile ? 'auto' : width};
             flex-direction: ${isMobile ? 'row' : 'column'};
             height: ${isMobile ? '100%' : 'auto'};
+            transform-origin: center center;
           }
 
           .infinite-scroll-item {
             height: ${itemMinHeight}px;
-            width: ${isMobile ? `${itemMinHeight * 0.75}px` : 'auto'};
             margin-top: ${isMobile ? '0' : negativeMargin};
             margin-left: ${isMobile ? '0.5rem' : '0'};
             margin-right: ${isMobile ? '0.5rem' : '0'};
             flex-shrink: 0;
+            opacity: 1;
+            visibility: visible;
           }
         `}
       </style>
