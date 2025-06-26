@@ -163,12 +163,10 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       const totalWidth = totalItemWidth * items.length;
       
       totalItemSize = totalItemWidth;
-      wrapFn = gsap.utils.wrap(-totalWidth, totalWidth);
+      wrapFn = gsap.utils.wrap(0, totalWidth);
 
-      // Create duplicates for seamless infinite scroll
-      const extendedItems = [...divItems, ...divItems, ...divItems];
-      extendedItems.forEach((child, i) => {
-        const x = (i - items.length) * totalItemWidth;
+      divItems.forEach((child, i) => {
+        const x = i * totalItemWidth;
         gsap.set(child, { x, y: 0 });
       });
     } else {
@@ -311,6 +309,7 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 
           .infinite-scroll-item {
             height: ${itemMinHeight}px;
+            width: ${isMobile ? `${itemMinHeight * 0.75}px` : 'auto'};
             margin-top: ${isMobile ? '0' : negativeMargin};
             margin-left: ${isMobile ? '0.5rem' : '0'};
             margin-right: ${isMobile ? '0.5rem' : '0'};
