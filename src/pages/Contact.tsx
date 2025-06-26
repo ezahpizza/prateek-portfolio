@@ -1,17 +1,29 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
-import { Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
+import {ChevronDown, Mail, Loader2, CheckCircle, Phone, User } from "lucide-react";
 import Footer from "../components/Footer";
 import TextPressure from '../components/ui/TextPressure';
+import AnimatedList from '../components/ui/AnimatedList'; 
 
 const Contact = () => {
 
-const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
-  if (!WEB3FORMS_API_KEY) {
-    console.error('WEB3FORMS_API_KEY is not defined');
-    return <div>Error: WEB3FORMS_API_KEY is not defined</div>;
-  }
+    
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedCountryCode, setSelectedCountryCode] = useState('+91');
+
+    const countryCodes = ['+91', '+1', '+44', '+62', '+61', '+86', '+81', '+82', '+65', '+60', '+64', '+55', '+52', '+33', '+49', '+39', '+34'];
+
+    const handleCountrySelect = (item: string, index: number) => {
+    setSelectedCountryCode(countryCodes[index]);
+    setIsDropdownOpen(false);
+    };
+
+    const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
+    if (!WEB3FORMS_API_KEY) {
+        console.error('WEB3FORMS_API_KEY is not defined');
+        return <div>Error: WEB3FORMS_API_KEY is not defined</div>;
+    }
 
   // Form data state
     const [formData, setFormData] = useState({
@@ -114,7 +126,7 @@ const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
     };
 
     return (
-        <div className="h-screen w-full bg-custom-steelGray flex flex-col relative overflow-hidden">
+        <div className="select-none h-screen w-full bg-custom-steelGray flex flex-col relative overflow-hidden">
         <Navbar 
             className={`transform transition-transform duration-700 ease-out ${navFooterVisible ? 'translate-y-0' : '-translate-y-full'}`} 
         />
@@ -217,32 +229,38 @@ const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
                 </div>
 
                 <div className="flex gap-2">
-                    <select 
-                    className="px-3 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
-                    disabled={isLoading}
-                    >
-                    <option value="+91">+91</option>
-                    <option value="+1">+1</option>
-                    <option value="+44">+44</option>
-                    <option value="+62">+62</option>
-                    <option value="+61">+61</option>
-                    <option value="+86">+86</option>
-                    <option value="+81">+81</option>
-                    <option value="+82">+82</option>
-                    <option value="+65">+65</option>
-                    <option value="+60">+60</option>
-                    <option value="+64">+64</option>
-                    <option value="+55">+55</option>
-                    <option value="+52">+52</option>
-                    <option value="+33">+33</option>
-                    <option value="+49">+49</option>
-                    <option value="+39">+39</option>
-                    <option value="+34">+34</option>
-                    </select>
+                    <div className="relative">
+                        <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        disabled={isLoading}
+                        className="px-3 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base flex items-center gap-2 min-w-[80px]"
+                        >
+                        {selectedCountryCode}
+                        <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                        
+                        {isDropdownOpen && (
+                        <>
+                            <div className="absolute top-full left-0 mt-2 z-50">
+                            <AnimatedList
+                                items={countryCodes}
+                                onItemSelect={handleCountrySelect}
+                                showGradients={true}
+                                enableArrowNavigation={true}
+                                className="w-[120px] bg-custom-purplePop"
+                                displayScrollbar={false}
+                                initialSelectedIndex={countryCodes.indexOf(selectedCountryCode)}
+                            />
+                            </div>
+                            <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
+                        </>
+                        )}
+                    </div>
                     
                     <div className="relative flex-1">
-                    <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-custom-gray" size={18} />
-                    <input
+                        <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-custom-gray" size={18} />
+                        <input
                         type="tel"
                         name="phone"
                         placeholder="Phone number"
@@ -251,9 +269,9 @@ const WEB3FORMS_API_KEY = import.meta.env.VITE_WEB3FORMS_API_KEY as string;
                         className="w-full pl-12 pr-4 py-2.5 md:py-3 rounded-lg border border-custom-purplePop bg-custom-steelGray/50 text-custom-lightGray placeholder-custom-gray focus:ring-2 focus:ring-custom-purplePop focus:border-transparent outline-none text-sm md:text-base"
                         required
                         disabled={isLoading}
-                    />
+                        />
                     </div>
-                </div>
+                    </div>
 
                 <textarea
                     name="message"

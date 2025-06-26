@@ -1,38 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import SplitText from './ui/SplitText';
+import ShinyText from './ui/ShinyText';
 
-interface StarWarsFanPromptProps {
-  onYes: () => void;
-  onNo: () => void;
-  onMaybe: () => void;
-}
+// TypewriterDialog Component
+const TypewriterDialog = ({ text }) => {
+  const [displayText, setDisplayText] = useState('');
 
-const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMaybe }) => {
-  const [typewriterText, setTypewriterText] = useState('');
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 50); // Faster typing
+
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return (
+    <div>
+      {displayText}
+      <span className="animate-pulse">|</span>
+    </div>
+  );
+};
+
+// Main Component
+const StarWarsFanPrompt = ({ onYes, onNo, onMaybe }) => {
   const [showButtons, setShowButtons] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<'yes' | 'no' | 'maybe' | null>(null);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [characterImage, setCharacterImage] = useState('');
   const [dialogText, setDialogText] = useState('');
   const [showDialog, setShowDialog] = useState(false);
 
-  const fullText = 'Are you a Star Wars fan?';
+  const handleTextComplete = () => {
+    setShowButtons(true);
+  };
 
-  useEffect(() => {
-    let index = 0;
-    const typeInterval = setInterval(() => {
-      if (index < fullText.length) {
-        setTypewriterText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(typeInterval);
-        setTimeout(() => setShowButtons(true), 500);
-      }
-    }, 100);
-
-    return () => clearInterval(typeInterval);
-  }, []);
-
-  const handleChoice = (choice: 'yes' | 'no' | 'maybe') => {
+  const handleChoice = (choice) => {
     setSelectedOption(choice);
     setShowButtons(false);
 
@@ -42,18 +51,18 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
 
     switch (choice) {
       case 'yes':
-        image = '/images/vader.webp';
+        image = '/images/revan.webp';
         dialog = 'The force is strong with this one.';
         callback = onYes;
         break;
       case 'no':
-        image = '/images/revan.webp';
-        dialog = "I've got a bad feeling about this.";
+        image = '/images/vader.webp';
+        dialog = "You are a part of the Rebel Alliance and a traitor! Take them away!";
         callback = onNo;
         break;
       case 'maybe':
         image = '/images/yoda.webp';
-        dialog = 'Go or stay. No try there is.';
+        dialog = 'Do or do not. No try there is.';
         callback = onMaybe;
         break;
     }
@@ -61,31 +70,31 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
     setCharacterImage(image);
     setDialogText(dialog);
 
-    // Character slides in, then dialog appears
+    // Faster animations
     setTimeout(() => {
       setShowDialog(true);
-      // After dialog completes, trigger callback
       setTimeout(() => {
         callback();
-      }, dialog.length * 80 + 1000);
-    }, 800);
+      }, dialog.length * 50 + 500); // Reduced timing
+    }, 400); // Faster character slide
   };
 
   return (
     <div className="fixed font-SWprompt inset-0 w-full h-full bg-black z-[150] flex items-center justify-center">
       <div className="flex flex-col items-center max-w-4xl mx-auto px-4">
-        {/* Main Question */}
+        {/* Main Question with SplitText */}
         <div className="text-center mb-8">
-          <div 
+          <SplitText
+            text="Hello There! (General Kenobi) I coded a cool star wars themed intro sequence next, you could stay for it, or go straight to my portfolio that is okay too! :)"
             className="text-blue-300 text-2xl md:text-4xl lg:text-5xl mb-8"
-            style={{ minHeight: '1.5em' }}
-          >
-            {typewriterText}
-            <span className="animate-pulse">|</span>
-          </div>
+            delay={80}
+            duration={0.1}
+            splitType={"words"}
+            onLetterAnimationComplete={handleTextComplete}
+          />
         </div>
 
-        {/* Buttons */}
+        {/* Sleek Buttons with ShinyText */}
         {showButtons && !selectedOption && (
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 md:gap-6 w-full max-w-3xl"
@@ -94,7 +103,7 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
             transition={{ duration: 0.5 }}
           >
             <motion.button
-              className="flex-1 px-4 py-3 md:px-6 md:py-4 bg-blue-600 text-white rounded-lg shadow-lg font-bold text-md md:text-2xl border-2 border-blue-300 hover:bg-blue-700 transition-all duration-200"
+              className="flex-1 px-4 py-3 md:px-6 md:py-4 bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-700/50 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-200"
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.02 }}
               onClick={() => handleChoice('yes')}
@@ -102,11 +111,11 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.3 }}
             >
-              Yes
+              <ShinyText text="roll the intro" className="text-md md:text-2xl " />
             </motion.button>
 
             <motion.button
-              className="flex-1 px-4 py-3 md:px-6 md:py-4 bg-red-600 text-white rounded-lg shadow-lg font-bold text-md md:text-2xl border-2 border-red-300 hover:bg-red-700 transition-all duration-200"
+              className="flex-1 px-4 py-3 md:px-6 md:py-4 bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-700/50 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-200"
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.02 }}
               onClick={() => handleChoice('no')}
@@ -114,11 +123,11 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              No
+              <ShinyText text="portfolio please" className="text-md md:text-2xl" />
             </motion.button>
 
             <motion.button
-              className="flex-1 px-4 py-3 md:px-6 md:py-4 bg-green-600 text-white rounded-lg shadow-lg font-bold text-sm md:text-2xl border-2 border-green-300 hover:bg-green-700 transition-all duration-200 leading-tight"
+              className="flex-1 px-4 py-3 md:px-6 md:py-4 bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-700/50 hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-200"
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.02 }}
               onClick={() => handleChoice('maybe')}
@@ -126,7 +135,7 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.3 }}
             >
-              No, but I'll try staying for a cool animation
+              <ShinyText text="not a fan but will try the intro :)" className="text-sm md:text-2xl  leading-tight" />
             </motion.button>
           </motion.div>
         )}
@@ -139,7 +148,7 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
               className="flex-shrink-0"
               initial={{ x: -200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: "easeOut" }} 
             >
               <div
                 className="rounded-lg border-2 border-blue-400 bg-black p-4 md:p-6"
@@ -162,7 +171,7 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
                 className="flex-1 px-4 py-4 md:px-6 md:py-6 rounded-lg border-2 border-blue-400 bg-black text-blue-300 text-lg md:text-2xl lg:text-3xl max-w-md md:max-w-lg"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }} 
               >
                 <TypewriterDialog text={dialogText} />
               </motion.div>
@@ -170,31 +179,16 @@ const StarWarsFanPrompt: React.FC<StarWarsFanPromptProps> = ({ onYes, onNo, onMa
           </div>
         )}
       </div>
-    </div>
-  );
-};
 
-const TypewriterDialog: React.FC<{ text: string }> = ({ text }) => {
-  const [displayText, setDisplayText] = useState('');
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < text.length) {
-        setDisplayText(text.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 80);
-
-    return () => clearInterval(interval);
-  }, [text]);
-
-  return (
-    <div>
-      {displayText}
-      <span className="animate-pulse">|</span>
+      <style>{`
+        @keyframes shine {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .animate-shine {
+          animation: shine var(--animation-duration, 3s) ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };
