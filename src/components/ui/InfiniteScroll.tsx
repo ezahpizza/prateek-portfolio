@@ -308,9 +308,8 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
 
           .infinite-scroll-item {
             height: ${itemMinHeight}px;
-            width: ${isMobile ? `${itemMinHeight * 0.75}px` : 'auto'};
             margin-top: ${isMobile ? '0' : negativeMargin};
-            margin-left: ${isMobile ? negativeMargin : '0'};
+            margin-left: ${isMobile ? '-12.7rem' : '0'};
             flex-shrink: 0;
           }
         `}
