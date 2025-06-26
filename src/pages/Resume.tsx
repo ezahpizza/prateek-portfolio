@@ -171,10 +171,10 @@ const Resume: React.FC = () => {
             </div>
           </section>
         </div>
-      <section className="sm:hidden overflow-hidden">
+      <section className="md:hidden overflow-hidden">
         <h2 className="text-2xl font-semibold text-custom-lightGray mb-6">Projects</h2>
       </section>
-        <section className="sm:hidden overflow-hidden rounded-full">
+        <section className="md:hidden overflow-hidden rounded-full">
           <div className="relative h-600px bg-custom_steelgray">
                 <InfiniteMenu items={projects}/>
           </div>
