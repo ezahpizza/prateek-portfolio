@@ -5,6 +5,8 @@ import VerticalProjectsCarousel from '../components/VerticalProjectsCarousel';
 import TextPressure from '../components/ui/TextPressure';
 import ClickSpark from '../components/ui/ClickSpark';
 import ScrollVelocity from '../components/ui/ScrollVelocity';
+import InfiniteScroll from '../components/ui/InfiniteScroll';
+import projects from '../data/projectsData';
 
 
 interface IndexProps {
@@ -57,11 +59,11 @@ useEffect(() => {
       >
         <main className="flex-grow flex flex-col md:flex-row md:h-screen w-full z-10 overflow-hidden">
             {/* LEFT SECTION - Content with paragraphs */}
-            <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-32 pb-8 md:pt-20 md:pb-[80px] z-50">
+            <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-32 pb-8 md:pt-10 md:pb-[80px] z-50">
               <div className="space-y-6 md:border-t md:mt-12 md:border-l md:pl-4 border-custom-purplePop max-w-full md:max-w-3xl w-full">
 
                 <p 
-                  className={`pt-4 text-3xl sm:text-4xl md:text-6xl text-custom-lightGray transform transition-all duration-500 ease-out leading-tight ${
+                  className={`pt-4 text-4xl text-custom-lightGray transform transition-all duration-500 ease-out leading-tight ${
                     paragraph1Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
                   }`}
                 >Currently an ML engineer intern at 
@@ -70,6 +72,7 @@ useEffect(() => {
                     paragraph1Visible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
                   }`}>
                     <TextPressure
+                    className='text-4xl'
                       text="Samsung (R&D)"
                       flex={true}
                       alpha={false}
@@ -154,14 +157,29 @@ useEffect(() => {
                   />
             </div>
 
-            {/* RIGHT SECTION - Carousel */}
+            {/* RIGHT SECTION - Carousel
             <div 
-              className={`w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-20 ${
+              className={`w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-10 ${
                 carouselVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
               }`}
             >
               <VerticalProjectsCarousel />
+            </div> */}
+
+            <div 
+              className={'w-full md:w-1/3 h-auto md:h-full'}
+            >
+               <InfiniteScroll
+                    items={projects}
+                    negativeMargin="-10rem"
+                    autoplaySpeed={2.5}
+                    autoplay={true}
+                    pauseOnHover={true}
+                    itemMinHeight={300}
+                  />
             </div>
+
+            
           </main>
 
           </ClickSpark>
