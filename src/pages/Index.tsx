@@ -58,7 +58,7 @@ useEffect(() => {
                  
           <main className="flex-grow flex flex-col md:flex-row md:h-screen w-full z-10 overflow-hidden">
             {/* LEFT SECTION - Content with paragraphs */}
-            <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-24 pb-8 md:pt-0 md:pb-[80px] z-50">
+            <div className="w-full md:w-2/3 flex items-center md:justify-start px-4 md:pl-8 md:pr-12 pt-32 pb-8 md:pt-20 md:pb-[80px] z-50">
               <div className="space-y-6 md:border-t md:mt-12 md:border-l md:pl-4 border-custom-purplePop max-w-full md:max-w-3xl w-full">
 
                 <p 
@@ -157,7 +157,7 @@ useEffect(() => {
 
             {/* RIGHT SECTION - Carousel */}
             <div 
-              className={`w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 ${
+              className={`w-full md:w-1/3 h-auto md:h-full transform transition-all duration-500 ease-out mb-16 md:mb-0 md:pt-20 ${
                 carouselVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
               }`}
             >
